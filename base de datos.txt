@@ -1,0 +1,26 @@
+CREATE DATABASE pruebaApi
+go
+use pruebaApi
+go
+
+/* Crear tablas */
+CREATE TABLE persona(
+	idPersona  int identity primary key,
+	Nombres varchar(200),
+	Apellidos varchar(200),
+	Correo varchar(200),
+	Direccion varchar(200),
+	Estado varchar(2)
+);
+
+CREATE TABLE usuario(
+	idUsuario int identity primary key,
+	idPersona int,
+	Usuario1 varchar(200),
+	Clave varchar(200),
+	Estado varchar(2),
+	CONSTRAINT fk_usuario_persona FOREIGN KEY (idPersona) REFERENCES persona(idPersona)
+);
+
+
+Scaffold-DbContext "Server=localhost;Database=pruebaApi;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models
